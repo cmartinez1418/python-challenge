@@ -9,6 +9,7 @@ print("-------------------")
 
 votes = []
 candidates = []
+vote_count = []
 votes_per_candidate = []
 
 with open(election_csv) as csvfile:
@@ -23,7 +24,7 @@ with open(election_csv) as csvfile:
         if candidate not in candidates:
             candidates.append(candidate)
         
-        votes_per_candidate.append(row[2])
+        vote_count.append(row[2])
         
 
 #total votes
@@ -40,4 +41,8 @@ print("--------------------")
     #print(candidate)
      
 # for index in candidates:   
-print(votes_per_candidate.count(candidates[index]))
+index = range(len(candidates))
+for i in index:
+    votes_per_candidate.append(vote_count.count(candidates[i]))
+
+print(votes_per_candidate)
