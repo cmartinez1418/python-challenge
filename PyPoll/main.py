@@ -11,6 +11,7 @@ votes = []
 candidates = []
 vote_count = []
 votes_per_candidate = []
+percentages = []
 
 with open(election_csv) as csvfile:
     csvreader = csv.reader(csvfile, delimiter=",")
@@ -31,7 +32,7 @@ with open(election_csv) as csvfile:
 
 total_votes = len(votes)
 print("Total Votes: " + str(total_votes))
-print("--------------------")
+print("-------------------")
 
 #for candidate in candidates:
    # candidates.count(row[2])
@@ -45,4 +46,18 @@ index = range(len(candidates))
 for i in index:
     votes_per_candidate.append(vote_count.count(candidates[i]))
 
-print(votes_per_candidate)
+
+# vote percentages
+for number in votes_per_candidate:
+    vote_percentage = (number / len(votes)) * 100
+    percentages.append(round(vote_percentage, 3))
+
+
+for i in index:
+    print(f"{candidates[i]}: {percentages[i]}% ({votes_per_candidate[i]})")
+
+print("-------------------")
+
+
+
+
