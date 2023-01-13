@@ -70,7 +70,7 @@ greatest_loss.append(min_diff)
 
 print("Greatest Decrease in Profits: " + str(months[min_index +1]) + " ($" + str(min_diff) + ")")
 
-zipped_csv = zip(months, total, average, differences, greatest_increase, greatest_loss)
+#zipped_csv = zip(months, total, average, differences, greatest_increase, greatest_loss)
 
 output_file = os.path.join("Analysis", "PyBank_final.csv")
 with open(output_file, "w") as datafile:
@@ -78,4 +78,4 @@ with open(output_file, "w") as datafile:
 
     writer.writerow(["Total Months", "Total", "Average Change", "Greatest Increase", "Greatest Decrease"])
     
-    writer.writerows(zipped_csv)
+    writer.writerow([months, total, average, differences, greatest_increase, greatest_loss])

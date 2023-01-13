@@ -13,6 +13,7 @@ vote_count = []
 votes_per_candidate = []
 percentages = []
 
+
 with open(election_csv) as csvfile:
     csvreader = csv.reader(csvfile, delimiter=",")
     header = next(csvreader)
@@ -34,14 +35,7 @@ total_votes = len(votes)
 print("Total Votes: " + str(total_votes))
 print("-------------------")
 
-#for candidate in candidates:
-   # candidates.count(row[2])
-    #votes_per_candidate.append(candidate)
-
-#for index, candidate in enumerate(candidates):
-    #print(candidate)
-     
-# for index in candidates:   
+   
 index = range(len(candidates))
 for i in index:
     votes_per_candidate.append(vote_count.count(candidates[i]))
@@ -58,6 +52,26 @@ for i in index:
 
 print("-------------------")
 
+# election winner
+
+winner_percentage = -1000000
+winner_index = -1
+for index, winner in enumerate(percentages):
+    if winner > winner_percentage:
+        winner_percentage = winner
+        winner_index = index
 
 
+winner_name = candidates[winner_index]
+print("Winner: " + winner_name)
 
+
+print("-------------------")
+
+output_file = os.path.join("Analysis", "PyPoll_final.csv")
+with open(output_file, "w") as datafile:
+    writer = csv.writer(datafile)
+
+    writer.writerow(["Total Votes", "Candidates", "Percent of Votes", "Winner"])
+
+    writer.writerow([total_votes, candidates, percentages, winner_name])
